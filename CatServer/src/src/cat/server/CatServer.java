@@ -22,7 +22,7 @@ public class CatServer {
 	DefaultListModel myListmodel =new DefaultListModel<>();
 	private static ServerView serverView =null ;
 	private static ServerSocket ss;
-	public static HashMap<String, CatClientBean> onlines;
+	public static HashMap<String, CatClientBean> onlines;//保存连接信息
 	static DefaultTableModel defaultTableModel = new DefaultTableModel();
 
 	static Vector<String> column =new Vector<>();
@@ -42,7 +42,7 @@ public class CatServer {
 		}
 	}
 
-	class ClientThread extends Thread {
+	class ClientThread extends Thread {//用于连接的，每个用户一个线程
 
 		private Socket client;
 		private CatBean bean;
@@ -89,7 +89,7 @@ public class CatServer {
 									data[1] = (onlines.get(bean.getName()).getSocket().getLocalSocketAddress().toString());
 									data[2] = (CatUtil.getTimer());
 
-									defaultTableModel.addRow(data);
+									defaultTableModel.addRow(data);//登录的用户名，ip,时间，加到界面的表里
 									serverView.list.setModel(myListmodel);
 									serverView.table.setModel(defaultTableModel);
 								}
