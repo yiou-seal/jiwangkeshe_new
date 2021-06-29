@@ -13,10 +13,10 @@ import java.util.Vector;
 
 import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
-
 import cat.function.CatBean;
 import cat.function.CatClientBean;
 import cat.util.CatUtil;
+import database.*;
 
 public class CatServer {
 	DefaultListModel myListmodel =new DefaultListModel<>();
@@ -48,9 +48,11 @@ public class CatServer {
 		private CatBean bean;
 		private ObjectInputStream ois;
 		private ObjectOutputStream oos;
+		databasesess dbsession;
 
-		public ClientThread(Socket client) {
+		public ClientThread(Socket client,databasesess dbsession) {
 			this.client = client;
+			this.dbsession=dbsession;
 		}
 
 		@Override
@@ -252,6 +254,21 @@ public class CatServer {
 
 							break;
 						}
+						case 10:
+						{
+							CatBean serverBean = new CatBean();
+
+							serverBean.setType(8);
+							serverBean.setIcon(bean.getIcon());
+							serverBean.setClients(bean.getClients());
+							serverBean.setTo(bean.getTo());
+							serverBean.setName(bean.getName());
+							serverBean.setTimer(bean.getTimer());
+							serverBean.setInfo(bean.getInfo());
+							sendMessage(serverBean);
+
+							break;
+						}
 						default:
 						{
 							break;
@@ -346,15 +363,18 @@ public class CatServer {
 	}
 
 	public void start() {
+		databasesess dbs=new databasesess();
 		try {
 			while (true) {
 				Socket client = ss.accept();
-				new ClientThread(client).start();				
+				new ClientThread(client,dbs).start();
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
+
+
 
 	public static void main(String[] args) {
 		serverView = new ServerView();
