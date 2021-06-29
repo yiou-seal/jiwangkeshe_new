@@ -110,6 +110,28 @@ public class UsersEntity
     }
 
     @Override
+    public String toString()
+    {
+        final StringBuilder sb = new StringBuilder("{");
+        sb.append("\"username\":\"")
+                .append(username).append('\"');
+        sb.append(",\"userId\":")
+                .append(userId);
+        sb.append(",\"sex\":\"")
+                .append(sex).append('\"');
+        sb.append(",\"password\":\"")
+                .append(password).append('\"');
+        sb.append(",\"telenumber\":\"")
+                .append(telenumber).append('\"');
+        sb.append(",\"email\":\"")
+                .append(email).append('\"');
+        sb.append(",\"accountstate\":\"")
+                .append(accountstate).append('\"');
+        sb.append('}');
+        return sb.toString();
+    }
+
+    @Override
     public int hashCode()
     {
         return Objects.hash(username, userId, sex, password, telenumber, email, accountstate);

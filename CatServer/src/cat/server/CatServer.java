@@ -17,6 +17,7 @@ import cat.function.CatBean;
 import cat.function.CatClientBean;
 import cat.util.CatUtil;
 import database.*;
+import database.entity.UsersEntity;
 
 public class CatServer {
 	DefaultListModel myListmodel =new DefaultListModel<>();
@@ -254,7 +255,7 @@ public class CatServer {
 
 							break;
 						}
-						case 10:
+						case 10://查询信息
 						{
 							CatBean serverBean = new CatBean();
 
@@ -264,7 +265,22 @@ public class CatServer {
 							serverBean.setTo(bean.getTo());
 							serverBean.setName(bean.getName());
 							serverBean.setTimer(bean.getTimer());
-							serverBean.setInfo(bean.getInfo());
+							serverBean.setInfo(dbsession.getuserinfo(bean.getName()).toString());
+							sendMessage(serverBean);
+
+							break;
+						}
+						case 11://更改信息
+						{
+							CatBean serverBean = new CatBean();
+
+							serverBean.setType(8);
+							serverBean.setIcon(bean.getIcon());
+							serverBean.setClients(bean.getClients());
+							serverBean.setTo(bean.getTo());
+							serverBean.setName(bean.getName());
+							serverBean.setTimer(bean.getTimer());
+							serverBean.setInfo( String.valueOf(dbsession.setuserinfo(new UsersEntity())));
 							sendMessage(serverBean);
 
 							break;
