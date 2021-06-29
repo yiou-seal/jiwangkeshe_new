@@ -27,8 +27,10 @@ public class databasesess
 //            }
             databasesess dbs = new databasesess();
             UsersEntity usersEntity = dbs.getuserinfo("1");
-            usersEntity.setEmail("dsadadsadasd");
-            dbs.setuserinfo(usersEntity);
+            String str=usersEntity.toString();
+            UsersEntity usersEntity2=new UsersEntity(str);
+            usersEntity2.setEmail("zth@dad.vf");
+            dbs.setuserinfo(usersEntity2);
 
         }catch(Exception e)
         {

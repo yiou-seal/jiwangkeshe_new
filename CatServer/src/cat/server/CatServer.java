@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import cat.function.CatBean;
 import cat.function.CatClientBean;
 import cat.util.CatUtil;
+import com.google.gson.JsonObject;
 import database.*;
 import database.entity.UsersEntity;
 
@@ -259,7 +260,7 @@ public class CatServer {
 						{
 							CatBean serverBean = new CatBean();
 
-							serverBean.setType(8);
+							serverBean.setType(10);
 							serverBean.setIcon(bean.getIcon());
 							serverBean.setClients(bean.getClients());
 							serverBean.setTo(bean.getTo());
@@ -273,14 +274,13 @@ public class CatServer {
 						case 11://更改信息
 						{
 							CatBean serverBean = new CatBean();
-
-							serverBean.setType(8);
+							serverBean.setType(11);
 							serverBean.setIcon(bean.getIcon());
 							serverBean.setClients(bean.getClients());
 							serverBean.setTo(bean.getTo());
 							serverBean.setName(bean.getName());
 							serverBean.setTimer(bean.getTimer());
-							serverBean.setInfo( String.valueOf(dbsession.setuserinfo(new UsersEntity())));
+							serverBean.setInfo( String.valueOf(dbsession.setuserinfo(new UsersEntity())));//需要改
 							sendMessage(serverBean);
 
 							break;

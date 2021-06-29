@@ -112,23 +112,39 @@ public class UsersEntity
     @Override
     public String toString()
     {
-        final StringBuilder sb = new StringBuilder("{");
-        sb.append("\"username\":\"")
-                .append(username).append('\"');
-        sb.append(",\"userId\":")
+        final StringBuilder sb = new StringBuilder("");
+        sb.append(username).append("");
+        sb.append("$")
                 .append(userId);
-        sb.append(",\"sex\":\"")
-                .append(sex).append('\"');
-        sb.append(",\"password\":\"")
-                .append(password).append('\"');
-        sb.append(",\"telenumber\":\"")
-                .append(telenumber).append('\"');
-        sb.append(",\"email\":\"")
-                .append(email).append('\"');
-        sb.append(",\"accountstate\":\"")
-                .append(accountstate).append('\"');
-        sb.append('}');
+        sb.append("$")
+                .append(sex).append("");
+        sb.append("$")
+                .append(password).append("");
+        sb.append("$")
+                .append(telenumber).append("");
+        sb.append("$")
+                .append(email).append("");
+        sb.append("$")
+                .append(accountstate).append("");
+        sb.append("");
         return sb.toString();
+    }
+
+    public UsersEntity()
+    {
+
+    }
+
+    public UsersEntity(String dollerstr)
+    {
+        String[] spstr=dollerstr.split("\\$");
+        this.username = spstr[0];
+        this.userId = Integer.parseInt(spstr[1]);
+        this.sex = spstr[2];
+        this.password = spstr[3];
+        this.telenumber = spstr[4];
+        this.email = spstr[5];
+        this.accountstate = spstr[6];
     }
 
     @Override
