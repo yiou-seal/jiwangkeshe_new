@@ -136,7 +136,7 @@
     </schema>
     <schema id="30" parent="7" name="dbo">
       <ObjectId>1</ObjectId>
-      <IntrospectionTimestamp>2021-06-29.19:49:24.507</IntrospectionTimestamp>
+      <IntrospectionTimestamp>2021-06-30.20:22:36.623</IntrospectionTimestamp>
       <Current>1</Current>
     </schema>
     <schema id="31" parent="7" name="guest">
@@ -229,54 +229,87 @@
       <Type>database-role</Type>
       <AuthType>none</AuthType>
     </role>
-    <table id="48" parent="30" name="users">
+    <table id="48" parent="30" name="friends">
+      <ObjectId>885578193</ObjectId>
+      <CreatedTimestamp>2021-06-30.06:05:49.840</CreatedTimestamp>
+      <ModifiedTimestamp>2021-06-30.06:05:49.840</ModifiedTimestamp>
+    </table>
+    <table id="49" parent="30" name="users">
       <ObjectId>581577110</ObjectId>
       <CreatedTimestamp>2021-06-25.03:05:49.440</CreatedTimestamp>
       <ModifiedTimestamp>2021-06-25.03:05:49.440</ModifiedTimestamp>
     </table>
-    <column id="49" parent="48" name="username">
+    <column id="50" parent="48" name="user1">
       <Position>1</Position>
-      <DataType>nvarchar(20 char)|0s</DataType>
+      <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="50" parent="48" name="userID">
+    <column id="51" parent="48" name="user2">
       <Position>2</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="51" parent="48" name="sex">
+    <index id="52" parent="48" name="PK__friends__E934B3F56A3C47BD">
+      <Position>1</Position>
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>user1
+user2</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="53" parent="48" name="PK__friends__E934B3F56A3C47BD">
+      <ObjectId>901578250</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2021-06-30.06:05:49.933</CreatedTimestamp>
+      <ModifiedTimestamp>2021-06-30.06:05:49.933</ModifiedTimestamp>
+      <ColNames>user1
+user2</ColNames>
+      <UnderlyingIndexName>PK__friends__E934B3F56A3C47BD</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="54" parent="49" name="username">
+      <Position>1</Position>
+      <DataType>nvarchar(20 char)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="55" parent="49" name="userID">
+      <Position>2</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="56" parent="49" name="sex">
       <Position>3</Position>
       <DataType>nvarchar(10 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="52" parent="48" name="password">
+    <column id="57" parent="49" name="password">
       <Position>4</Position>
       <DataType>nvarchar(20 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="53" parent="48" name="telenumber">
+    <column id="58" parent="49" name="telenumber">
       <Position>5</Position>
       <DataType>nvarchar(20 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="54" parent="48" name="email">
+    <column id="59" parent="49" name="email">
       <Position>6</Position>
       <DataType>nvarchar(30 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="55" parent="48" name="accountstate">
+    <column id="60" parent="49" name="accountstate">
       <Position>7</Position>
       <DataType>nvarchar(10 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="56" parent="48" name="PK__users__CB9A1CDF264DA146">
+    <index id="61" parent="49" name="PK__users__CB9A1CDF264DA146">
       <Position>1</Position>
       <NameSurrogate>1</NameSurrogate>
       <ColNames>userID</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <key id="57" parent="48" name="PK__users__CB9A1CDF264DA146">
+    <key id="62" parent="49" name="PK__users__CB9A1CDF264DA146">
       <ObjectId>597577167</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2021-06-25.03:05:49.483</CreatedTimestamp>
