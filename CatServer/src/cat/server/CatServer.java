@@ -4,12 +4,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.Vector;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
@@ -80,6 +76,7 @@ public class CatServer {
 							CatClientBean cbean = new CatClientBean();
 							cbean.setName(bean.getName());
 							cbean.setSocket(client);
+							cbean.setThreadname(Thread.currentThread().getName());
 							// 添加在线用户
 							onlines.put(bean.getName(), cbean);
 
@@ -108,11 +105,29 @@ public class CatServer {
 							serverBean.setInfo(bean.getTimer() + "  "
 									+ bean.getName() + "上线了");
 							// 通知所有客户有人上线
-							HashSet<String> set = new HashSet<String>();
-							// 客户昵称
-							set.addAll(onlines.keySet());
-							serverBean.setClients(set);
-							sendAll(serverBean);
+							ArrayList<String> friends=dbsession.getfriendname(bean.getName());
+							HashSet<String> onlinefrind = new HashSet<String>();
+							// 找出在线的好友
+							for (String key : onlines.keySet()) {
+								if (friends.contains(key))
+								{
+									onlinefrind.add(key);
+								}
+							}
+							//onlinefrind.addAll(onlines.keySet());
+							serverBean.setClients(onlinefrind);
+							sendMessage(serverBean);
+
+							//下面发送包含好友信息的包
+							//atBean serverBean = new CatBean();
+							serverBean.setType(11);//包含好友信息的包
+							serverBean.setInfo(onlinefrind.stream().map(String::valueOf).collect(Collectors.joining("$")));
+							HashSet<String> target = new HashSet<String>();
+							target.add(bean.getName());
+							//onlinefrind.addAll(onlines.keySet());
+							serverBean.setClients(target);
+							sendMessage(serverBean);
+
 							break;
 						}
 						case -1:
@@ -281,7 +296,22 @@ public class CatServer {
 							serverBean.setTo(bean.getTo());
 							serverBean.setName(bean.getName());
 							serverBean.setTimer(bean.getTimer());
-							serverBean.setInfo( String.valueOf(dbsession.setuserinfo(new UsersEntity())));//需要改
+							serverBean.setInfo( String.valueOf(dbsession.setuserinfo(new UsersEntity(bean.getInfo()))));//需要改
+							sendMessage(serverBean);
+
+							break;
+						}
+						case 12://添加好友
+						{
+							CatBean serverBean = new CatBean();
+							serverBean.setType(12);
+							serverBean.setIcon(bean.getIcon());
+							serverBean.setClients(bean.getClients());
+							serverBean.setTo(bean.getTo());
+							serverBean.setName(bean.getName());
+							serverBean.setTimer(bean.getTimer());
+							String[] str=bean.getInfo().split("\\$");
+							serverBean.setInfo( String.valueOf(dbsession.setnewfriend(str[1],str[2])));
 							sendMessage(serverBean);
 
 							break;

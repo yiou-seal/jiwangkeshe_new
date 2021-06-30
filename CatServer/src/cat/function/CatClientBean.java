@@ -6,7 +6,17 @@ public class CatClientBean {
 
 	private String name;
 	private Socket socket;
-	
+	private String threadname;
+
+	public void setThreadname(String threadname)
+	{
+		this.threadname = threadname;
+	}
+
+	public String getThreadname()
+	{
+		return threadname;
+	}
 
 	public String getName() {
 		return name;
