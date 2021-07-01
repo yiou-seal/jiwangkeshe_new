@@ -48,6 +48,8 @@ public class CatServer {
 		private ObjectInputStream ois;
 		private ObjectOutputStream oos;
 		databasesess dbsession;
+		HashSet<String> onlinefrind = new HashSet<String>();
+		ArrayList<String> friends=new ArrayList<String>();
 
 		public ClientThread(Socket client,databasesess dbsession) {
 			this.client = client;
@@ -104,29 +106,17 @@ public class CatServer {
 							serverBean.setType(0);
 							serverBean.setInfo(bean.getTimer() + "  "
 									+ bean.getName() + "上线了");
-							// 通知所有客户有人上线
-							ArrayList<String> friends=dbsession.getfriendname(bean.getName());
-							HashSet<String> onlinefrind = new HashSet<String>();
-							// 找出在线的好友
-							for (String key : onlines.keySet()) {
-								if (friends.contains(key))
-								{
-									onlinefrind.add(key);
-								}
-							}
+							// 寻找好友列表
+							friends=dbsession.getfriendname(bean.getName());
+							//找出在线的好友
+							getonlinefriends();
 							//onlinefrind.addAll(onlines.keySet());
 							serverBean.setClients(onlinefrind);
 							sendMessage(serverBean);
 
 							//下面发送包含好友信息的包
-							//atBean serverBean = new CatBean();
-							serverBean.setType(11);//包含好友信息的包
-							serverBean.setInfo(onlinefrind.stream().map(String::valueOf).collect(Collectors.joining("$")));
-							HashSet<String> target = new HashSet<String>();
-							target.add(bean.getName());
-							//onlinefrind.addAll(onlines.keySet());
-							serverBean.setClients(target);
-							sendMessage(serverBean);
+
+							sendfriendsinfo();
 
 							break;
 						}
@@ -172,11 +162,23 @@ public class CatServer {
 							serverBean2.setInfo("\r\n" + bean.getTimer() + "  "
 									+ bean.getName() + "" + " 下线了");
 							serverBean2.setType(0);
-							HashSet<String> set = new HashSet<String>();
-							set.addAll(onlines.keySet());
-							serverBean2.setClients(set);
 
-							sendAll(serverBean2);
+							//找出在线的好友
+							getonlinefriends();
+							//onlinefrind.addAll(onlines.keySet());
+							serverBean.setClients(onlinefrind);
+							sendMessage(serverBean);
+
+//							HashSet<String> set = new HashSet<String>();
+//							set.addAll(onlines.keySet());
+//							serverBean2.setClients(set);
+//
+//							sendAll(serverBean2);
+
+
+
+
+							//进程结束
 							return;
 						}
 						case 1:
@@ -313,6 +315,12 @@ public class CatServer {
 							String[] str=bean.getInfo().split("\\$");
 							serverBean.setInfo( String.valueOf(dbsession.setnewfriend(str[1],str[2])));
 							sendMessage(serverBean);
+							//更新好友列表
+							friends=dbsession.getfriendname(bean.getName());
+							//找出在线的好友
+							getonlinefriends();
+							//下面发送包含好友信息的包
+							sendfriendsinfo();
 
 							break;
 						}
@@ -333,6 +341,30 @@ public class CatServer {
 			} finally
 			{
 				close();
+			}
+		}
+
+		private void sendfriendsinfo()
+		{
+			CatBean serverBean = new CatBean();
+			serverBean.setType(11);//包含好友信息的包
+			serverBean.setInfo(onlinefrind.stream().map(String::valueOf).collect(Collectors.joining("$")));
+			HashSet<String> target = new HashSet<String>();
+			target.add(bean.getName());
+			serverBean.setName(bean.getName());
+			serverBean.setClients(target);
+			sendMessage(serverBean);
+		}
+
+		private void getonlinefriends()
+		{
+			onlinefrind.clear();
+			// 找出在线的好友
+			for (String key : onlines.keySet()) {
+				if (friends.contains(key))
+				{
+					onlinefrind.add(key);
+				}
 			}
 		}
 

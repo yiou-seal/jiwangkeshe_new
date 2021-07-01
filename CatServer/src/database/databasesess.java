@@ -36,7 +36,7 @@ public class databasesess
             dbs.setuserinfo(usersEntity2);
 
             //dbs.setnewfriend("zth","qxy");
-            ArrayList<String> res=dbs.getfriendname("zth");
+            ArrayList<String> res=dbs.getfriendname("xwh");
             String join = res.stream().map(String::valueOf).collect(Collectors.joining("$"));
             System.out.println(join);
         }catch(Exception e)
@@ -147,6 +147,7 @@ public class databasesess
             {
                 res.add(rsresult.getString("username"));
             }
+            res.add(username);
 
         }catch(Exception e)
         {
