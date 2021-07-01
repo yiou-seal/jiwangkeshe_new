@@ -298,7 +298,9 @@ public class CatServer {
 							serverBean.setTo(bean.getTo());
 							serverBean.setName(bean.getName());
 							serverBean.setTimer(bean.getTimer());
-							serverBean.setInfo( String.valueOf(dbsession.setuserinfo(new UsersEntity(bean.getInfo()))));//需要改
+							//serverBean.setInfo( String.valueOf(dbsession.setuserinfo(new UsersEntity(bean.getInfo()))));//需要改
+							dbsession.setuserinfo(new UsersEntity(bean.getInfo()));
+							serverBean.setInfo(dbsession.getuserinfo(bean.getName()).toString());
 							sendMessage(serverBean);
 
 							break;
@@ -309,18 +311,31 @@ public class CatServer {
 							serverBean.setType(12);
 							serverBean.setIcon(bean.getIcon());
 							serverBean.setClients(bean.getClients());
-							serverBean.setTo(bean.getTo());
+							//serverBean.setTo(bean.getTo());
 							serverBean.setName(bean.getName());
 							serverBean.setTimer(bean.getTimer());
 							String[] str=bean.getInfo().split("\\$");
-							serverBean.setInfo( String.valueOf(dbsession.setnewfriend(str[1],str[2])));
+							serverBean.setInfo( String.valueOf(dbsession.setnewfriend(str[0],str[1])));
 							sendMessage(serverBean);
 							//更新好友列表
 							friends=dbsession.getfriendname(bean.getName());
 							//找出在线的好友
 							getonlinefriends();
-							//下面发送包含好友信息的包
+							//下面发送包含好友信息的包给发起添加的人
 							sendfriendsinfo();
+
+							//CatBean serverBean = new CatBean();
+							serverBean.setType(12);
+							serverBean.setIcon(bean.getIcon());
+							HashSet<String> target = new HashSet<String>();
+							target.add(str[1]);
+							serverBean.setClients(target);
+							//serverBean.setTo(bean.getTo());
+							serverBean.setName(bean.getName());
+							serverBean.setTimer(bean.getTimer());
+
+							serverBean.setInfo(str[0]);
+							sendMessage(serverBean);
 
 							break;
 						}
@@ -347,7 +362,7 @@ public class CatServer {
 		private void sendfriendsinfo()
 		{
 			CatBean serverBean = new CatBean();
-			serverBean.setType(11);//包含好友信息的包
+			serverBean.setType(13);//包含好友信息的包
 			serverBean.setInfo(onlinefrind.stream().map(String::valueOf).collect(Collectors.joining("$")));
 			HashSet<String> target = new HashSet<String>();
 			target.add(bean.getName());

@@ -81,7 +81,7 @@ public class databasesess
             result=st.executeQuery(sql);
             int col=result.getMetaData().getColumnCount();
 
-            System.out.println("成功");
+            System.out.println("success getuserinfo");
             while(result.next())
             {
 
@@ -109,14 +109,15 @@ public class databasesess
         Statement st;
         ResultSet result;
 
-        String sql="update users set username='"+user.getUsername()+"',sex='"+user.getSex()+"',password='"+user.getPassword()+"',email='"+user.getEmail()+"' where userID="+user.getUserId();
+
+        String sql="update users set username='"+user.getUsername()+"',sex='"+user.getSex()+"',password='"+user.getPassword()+"',email='"+user.getEmail()+"',telenumber='"+user.getTelenumber()+"' where userID="+user.getUserId();
 
         try
         {
             st=con.createStatement();
             st.executeUpdate(sql);
 
-            System.out.println("成功");
+            System.out.println("success setuserinfo");
 
         }catch(Exception e)
         {
@@ -142,7 +143,7 @@ public class databasesess
             st=con.createStatement();
             rsresult=st.executeQuery(sql);
             int col=rsresult.getMetaData().getColumnCount();
-            System.out.println("成功");
+            System.out.println("success getfriend");
             while(rsresult.next())
             {
                 res.add(rsresult.getString("username"));

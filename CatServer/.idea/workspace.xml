@@ -35,7 +35,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="database.data.extractors.current.export.id" value="SQL Inserts" />
     <property name="database.data.extractors.current.id" value="SQL Inserts" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/gson-2.8.7.jar" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../CatClient" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -43,7 +43,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
-  <component name="RunManager" selected="Application.databasesess">
+  <component name="RunManager" selected="Application.CatServer">
     <configuration name="CatServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cat.server.CatServer" />
       <module name="CatServer" />
@@ -70,21 +70,27 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.CatServer" />
+      <item itemvalue="Application.databasesess" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.databasesess" />
         <item itemvalue="Application.CatServer" />
+        <item itemvalue="Application.databasesess" />
       </list>
     </recent_temporary>
   </component>
@@ -108,7 +114,8 @@
       <workItem from="1624956971215" duration="3369000" />
       <workItem from="1625024971725" duration="9142000" />
       <workItem from="1625046681312" duration="23000" />
-      <workItem from="1625111966131" duration="2397000" />
+      <workItem from="1625111966131" duration="3859000" />
+      <workItem from="1625146491295" duration="8425000" />
     </task>
     <servers />
   </component>
@@ -122,7 +129,26 @@
           <properties class="com.microsoft.sqlserver.jdbc.SQLServerException" package="com.microsoft.sqlserver.jdbc" />
           <option name="timeStamp" value="3" />
         </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.io.EOFException" package="java.io" />
+          <option name="timeStamp" value="4" />
+        </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/cat/server/CatServer.java</url>
+          <line>309</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/cat/server/CatServer.java</url>
+          <line>337</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="java.lang.String" memberName="hash" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>
