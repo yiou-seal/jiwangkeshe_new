@@ -7,7 +7,7 @@ import java.util.HashSet;
 import javax.swing.Icon;
 import javax.swing.text.SimpleAttributeSet;
 
-public class CatBean implements Serializable {
+public class Messagebean implements Serializable {
 	
 	//×Ö·ûÊôĞÔ
 	private SimpleAttributeSet attributeSet;

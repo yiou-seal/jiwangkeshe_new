@@ -9,9 +9,9 @@ import java.util.stream.Collectors;
 
 import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
-import cat.function.CatBean;
+import cat.function.Messagebean;
 import cat.function.Clientserverinfo;
-import cat.util.CatUtil;
+import cat.util.Util;
 
 import database.*;
 import database.entity.UsersEntity;
@@ -45,7 +45,7 @@ public class ConnectedClient
 	class ClientThread extends Thread {//用于连接的，每个用户一个线程
 
 		private Socket client;
-		private CatBean bean;
+		private Messagebean bean;
 		private ObjectInputStream ois;
 		private ObjectOutputStream oos;
 		databasesess dbsession;
@@ -69,7 +69,7 @@ public class ConnectedClient
 				{
 					// 读取从客户端接收到的catbean信息
 					ois = new ObjectInputStream(client.getInputStream());
-					bean = (CatBean) ois.readObject();
+					bean = (Messagebean) ois.readObject();
 
 					// 分析catbean中，type是那样一种类型
 					switch (bean.getType())
@@ -94,7 +94,7 @@ public class ConnectedClient
 
 									data[0] = (bean.getName());
 									data[1] = (onlines.get(bean.getName()).getSocket().getLocalSocketAddress().toString());
-									data[2] = (CatUtil.getTimer());
+									data[2] = (Util.getTimer());
 
 									defaultTableModel.addRow(data);//登录的用户名，ip,时间，加到界面的表里
 									serverView.list.setModel(myListmodel);
@@ -105,7 +105,7 @@ public class ConnectedClient
 							}.start();
 
 							// 创建服务器的catbean，并发送给客户端
-							CatBean serverBean = new CatBean();
+							Messagebean serverBean = new Messagebean();
 							serverBean.setType(0);
 							serverBean.setInfo(bean.getTimer() + "  "
 									+ bean.getName() + "上线了");
@@ -126,7 +126,7 @@ public class ConnectedClient
 						case -1:
 						{ // 下线
 							// 创建服务器的catbean，并发送给客户端
-							CatBean serverBean = new CatBean();
+							Messagebean serverBean = new Messagebean();
 							serverBean.setType(-1);
 
 							try
@@ -161,7 +161,7 @@ public class ConnectedClient
 								;
 							}.start();
 							// 向剩下的在线用户发送有人离开的通知
-							CatBean serverBean2 = new CatBean();
+							Messagebean serverBean2 = new Messagebean();
 							serverBean2.setInfo("\r\n" + bean.getTimer() + "  "
 									+ bean.getName() + "" + " 下线了");
 							serverBean2.setType(0);
@@ -207,7 +207,7 @@ public class ConnectedClient
 
 		private void addfriend()
 		{
-			CatBean serverBean = new CatBean();
+			Messagebean serverBean = new Messagebean();
 			serverBean.setType(12);
 			serverBean.setIcon(bean.getIcon());
 			serverBean.setClients(bean.getClients());
@@ -240,7 +240,7 @@ public class ConnectedClient
 
 		private void edituserinfo()
 		{
-			CatBean serverBean = new CatBean();
+			Messagebean serverBean = new Messagebean();
 			serverBean.setType(11);
 			serverBean.setIcon(bean.getIcon());
 			serverBean.setClients(bean.getClients());
@@ -255,7 +255,7 @@ public class ConnectedClient
 
 		private void getuserinfo()
 		{
-			CatBean serverBean = new CatBean();
+			Messagebean serverBean = new Messagebean();
 
 			serverBean.setType(10);
 			serverBean.setIcon(bean.getIcon());
@@ -269,7 +269,7 @@ public class ConnectedClient
 
 		private void sendfriendsinfo()
 		{
-			CatBean serverBean = new CatBean();
+			Messagebean serverBean = new Messagebean();
 			serverBean.setType(13);//包含好友信息的包
 			serverBean.setInfo(onlinefrind.stream().map(String::valueOf).collect(Collectors.joining("$")));
 			HashSet<String> target = new HashSet<String>();
@@ -284,7 +284,7 @@ public class ConnectedClient
 			UsersEntity user= dbsession.getuserinfo(bean.getName());
 			boolean result=user.getPassword().equals(bean.getInfo());
 
-			CatBean serverBean = new CatBean();
+			Messagebean serverBean = new Messagebean();
 			serverBean.setType(14);
 			serverBean.setIcon(bean.getIcon());
 			serverBean.setClients(bean.getClients());
@@ -301,7 +301,7 @@ public class ConnectedClient
 			UsersEntity user= dbsession.getuserinfo(bean.getName());
 			boolean result=user.getPassword().equals(bean.getInfo());
 
-			CatBean serverBean = new CatBean();
+			Messagebean serverBean = new Messagebean();
 			serverBean.setType(14);
 			serverBean.setIcon(bean.getIcon());
 			serverBean.setClients(bean.getClients());
@@ -328,7 +328,7 @@ public class ConnectedClient
 		private void chat()
 		{
 			//		创建服务器的catbean，并发送给客户端
-			CatBean serverBean = new CatBean();
+			Messagebean serverBean = new Messagebean();
 			serverBean.setType(1);
 			serverBean.setClients(bean.getClients());//目标用户
 			serverBean.setInfo(bean.getInfo());
@@ -344,7 +344,7 @@ public class ConnectedClient
 
 
 		// 向选中的用户发送数据
-		void sendMessage(CatBean serverBean) {
+		void sendMessage(Messagebean serverBean) {
 			// 首先取得所有的values
 			Set<String> cbs = onlines.keySet();
 			Iterator<String> it = cbs.iterator();
@@ -371,7 +371,7 @@ public class ConnectedClient
 		}
 
 		// 向所有的用户发送数据
-		private void sendAll(CatBean serverBean) {
+		private void sendAll(Messagebean serverBean) {
 			Collection<Clientserverinfo> clients = onlines.values();
 			Iterator<Clientserverinfo> it = clients.iterator();
 			ObjectOutputStream oos;

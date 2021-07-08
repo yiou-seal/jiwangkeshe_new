@@ -23,9 +23,9 @@ import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
-import cat.function.CatBean;
+import cat.function.Messagebean;
 import cat.function.Clientserverinfo;
-import cat.util.CatUtil;
+import cat.util.Util;
 
 public class ServerView extends JFrame{
 	private JPanel contentPane;
@@ -128,10 +128,10 @@ public class ServerView extends JFrame{
 	
 	private void sendAll() {
 		String text= textArea.getText();
-		CatBean serverBean =new CatBean();
+		Messagebean serverBean =new Messagebean();
 		serverBean.setInfo(text);
 		serverBean.setType(1);
-		serverBean.setTimer(CatUtil.getTimer());
+		serverBean.setTimer(Util.getTimer());
 		serverBean.setName("·þÎñÆ÷");
 		
 		if(text.equals("")){

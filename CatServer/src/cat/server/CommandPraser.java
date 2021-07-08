@@ -1,6 +1,6 @@
 package cat.server;
 
-import cat.function.CatBean;
+import cat.function.Messagebean;
 import database.databasesess;
 import database.entity.UsersEntity;
 
@@ -16,7 +16,7 @@ public class CommandPraser
         this.dbsession = dbsession;
     }
 
-    public void runCommand(ConnectedClient.ClientThread cc, CatBean bean)
+    public void runCommand(ConnectedClient.ClientThread cc, Messagebean bean)
     {
         switch (bean.getType())
         {
@@ -29,7 +29,7 @@ public class CommandPraser
             case 2:
             { // 请求接受文件
                 // 创建服务器的catbean，并发送给客户端
-                CatBean serverBean = new CatBean();
+                Messagebean serverBean = new Messagebean();
                 String info = bean.getTimer() + "  " + bean.getName()
                         + "向你传送文件,是否需要接受";
 
@@ -47,7 +47,7 @@ public class CommandPraser
             }
             case 3:
             { // 确定接收文件
-                CatBean serverBean = new CatBean();
+                Messagebean serverBean = new Messagebean();
 
                 serverBean.setType(3);
                 serverBean.setClients(bean.getClients()); // 文件来源
@@ -63,7 +63,7 @@ public class CommandPraser
             }
             case 4:
             {
-                CatBean serverBean = new CatBean();
+                Messagebean serverBean = new Messagebean();
                 serverBean.setType(4);
                 serverBean.setClients(bean.getClients()); // 文件来源
                 serverBean.setTo(bean.getTo()); // 文件目的地
@@ -76,7 +76,7 @@ public class CommandPraser
             }
             case 9:
             {
-                CatBean serverBean = new CatBean();
+                Messagebean serverBean = new Messagebean();
 
                 serverBean.setType(9);
                 serverBean.setClients(bean.getClients());
@@ -89,7 +89,7 @@ public class CommandPraser
             }
             case 8:
             {
-                CatBean serverBean = new CatBean();
+                Messagebean serverBean = new Messagebean();
 
                 serverBean.setType(8);
                 serverBean.setIcon(bean.getIcon());
@@ -135,9 +135,9 @@ public class CommandPraser
 
 
 
-private void addfriend(ConnectedClient.ClientThread cc, CatBean bean)
+private void addfriend(ConnectedClient.ClientThread cc, Messagebean bean)
         {
-        CatBean serverBean = new CatBean();
+        Messagebean serverBean = new Messagebean();
         serverBean.setType(12);
         serverBean.setIcon(bean.getIcon());
         serverBean.setClients(bean.getClients());
@@ -168,9 +168,9 @@ private void addfriend(ConnectedClient.ClientThread cc, CatBean bean)
         cc.sendMessage(serverBean);
         }
 
-private void edituserinfo(ConnectedClient.ClientThread cc, CatBean bean)
+private void edituserinfo(ConnectedClient.ClientThread cc, Messagebean bean)
         {
-        CatBean serverBean = new CatBean();
+        Messagebean serverBean = new Messagebean();
         serverBean.setType(11);
         serverBean.setIcon(bean.getIcon());
         serverBean.setClients(bean.getClients());
@@ -183,9 +183,9 @@ private void edituserinfo(ConnectedClient.ClientThread cc, CatBean bean)
         cc.sendMessage(serverBean);
         }
 
-private void getuserinfo(ConnectedClient.ClientThread cc, CatBean bean)
+private void getuserinfo(ConnectedClient.ClientThread cc, Messagebean bean)
         {
-        CatBean serverBean = new CatBean();
+        Messagebean serverBean = new Messagebean();
 
         serverBean.setType(10);
         serverBean.setIcon(bean.getIcon());
@@ -197,9 +197,9 @@ private void getuserinfo(ConnectedClient.ClientThread cc, CatBean bean)
         cc.sendMessage(serverBean);
         }
 
-private void sendfriendsinfo(ConnectedClient.ClientThread cc, CatBean bean)
+private void sendfriendsinfo(ConnectedClient.ClientThread cc, Messagebean bean)
         {
-        CatBean serverBean = new CatBean();
+        Messagebean serverBean = new Messagebean();
         serverBean.setType(13);//包含好友信息的包
         serverBean.setInfo(cc.onlinefrind.stream().map(String::valueOf).collect(Collectors.joining("$")));
         HashSet<String> target = new HashSet<String>();
@@ -209,12 +209,12 @@ private void sendfriendsinfo(ConnectedClient.ClientThread cc, CatBean bean)
         cc.sendMessage(serverBean);
         }
 
-private void signin(ConnectedClient.ClientThread cc, CatBean bean)
+private void signin(ConnectedClient.ClientThread cc, Messagebean bean)
         {
         UsersEntity user= dbsession.getuserinfo(bean.getName());
         boolean result=user.getPassword().equals(bean.getInfo());
 
-        CatBean serverBean = new CatBean();
+        Messagebean serverBean = new Messagebean();
         serverBean.setType(14);
         serverBean.setIcon(bean.getIcon());
         serverBean.setClients(bean.getClients());
@@ -226,12 +226,12 @@ private void signin(ConnectedClient.ClientThread cc, CatBean bean)
         cc.sendMessage(serverBean);
         }
 
-private void signup(ConnectedClient.ClientThread cc, CatBean bean)
+private void signup(ConnectedClient.ClientThread cc, Messagebean bean)
         {
         UsersEntity user= dbsession.getuserinfo(bean.getName());
         boolean result=user.getPassword().equals(bean.getInfo());
 
-        CatBean serverBean = new CatBean();
+        Messagebean serverBean = new Messagebean();
         serverBean.setType(14);
         serverBean.setIcon(bean.getIcon());
         serverBean.setClients(bean.getClients());
@@ -245,10 +245,10 @@ private void signup(ConnectedClient.ClientThread cc, CatBean bean)
 
 
 
-private void chat(ConnectedClient.ClientThread cc, CatBean bean)
+private void chat(ConnectedClient.ClientThread cc, Messagebean bean)
         {
         //		创建服务器的catbean，并发送给客户端
-        CatBean serverBean = new CatBean();
+        Messagebean serverBean = new Messagebean();
         serverBean.setType(1);
         serverBean.setClients(bean.getClients());//目标用户
         serverBean.setInfo(bean.getInfo());
