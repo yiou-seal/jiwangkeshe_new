@@ -10,18 +10,19 @@ import java.util.stream.Collectors;
 import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
 import cat.function.CatBean;
-import cat.function.CatClientBean;
+import cat.function.Clientserverinfo;
 import cat.util.CatUtil;
-import com.google.gson.JsonObject;
 
 import database.*;
 import database.entity.UsersEntity;
 
-public class CatServer {
+public class ConnectedClient
+{
+	public static int portNumber=8520;
 	DefaultListModel myListmodel =new DefaultListModel<>();
 	private static ServerView serverView =null ;
 	private static ServerSocket ss;
-	public static HashMap<String, CatClientBean> onlines;//保存连接信息
+	public static HashMap<String, Clientserverinfo> onlines;//保存连接信息
 	static DefaultTableModel defaultTableModel = new DefaultTableModel();
 
 	static Vector<String> column =new Vector<>();
@@ -29,9 +30,9 @@ public class CatServer {
 	static {
 		try {
 
-			ss = new ServerSocket(8520);
+			ss = new ServerSocket(portNumber);
 
-			onlines = new HashMap<String, CatClientBean>();
+			onlines = new HashMap<String, Clientserverinfo>();
 
 			defaultTableModel.addColumn("用户名");
 			defaultTableModel.addColumn("主机ip地址");
@@ -77,7 +78,7 @@ public class CatServer {
 						case 0:
 						{ // 上线
 							// 记录上线客户的用户名和端口在clientbean中
-							CatClientBean cbean = new CatClientBean();
+							Clientserverinfo cbean = new Clientserverinfo();
 							cbean.setName(bean.getName());
 							cbean.setSocket(client);
 							cbean.setThreadname(Thread.currentThread().getName());
@@ -371,8 +372,8 @@ public class CatServer {
 
 		// 向所有的用户发送数据
 		private void sendAll(CatBean serverBean) {
-			Collection<CatClientBean> clients = onlines.values();
-			Iterator<CatClientBean> it = clients.iterator();
+			Collection<Clientserverinfo> clients = onlines.values();
+			Iterator<Clientserverinfo> it = clients.iterator();
 			ObjectOutputStream oos;
 			while (it.hasNext()) {
 				Socket c = it.next().getSocket();
@@ -432,9 +433,9 @@ public class CatServer {
 	public static void main(String[] args) {
 		serverView = new ServerView();
 		serverView.setVisible(true);
-		CatServer catServer =new CatServer();
-		catServer.start();
-		serverView.setCatServer(catServer);
+		ConnectedClient connectedClient =new ConnectedClient();
+		connectedClient.start();
+		serverView.setCatServer(connectedClient);
 	}
 
 }

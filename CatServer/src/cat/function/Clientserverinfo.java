@@ -2,7 +2,8 @@ package cat.function;
 
 import java.net.Socket;
 
-public class CatClientBean {
+public class Clientserverinfo
+{
 
 	private String name;
 	private Socket socket;

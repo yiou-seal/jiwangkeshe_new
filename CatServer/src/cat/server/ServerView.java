@@ -9,7 +9,6 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -23,16 +22,10 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.table.DefaultTableModel;
 
 import cat.function.CatBean;
-import cat.function.CatClientBean;
+import cat.function.Clientserverinfo;
 import cat.util.CatUtil;
-import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class ServerView extends JFrame{
 	private JPanel contentPane;
@@ -47,10 +40,10 @@ public class ServerView extends JFrame{
 	public MyCellRenderer myCellRenderer=null;
 	public MyListmodel myListmodel =null;
 	private JScrollPane scrollPane;
-	private CatServer  catServer= null;
+	private ConnectedClient connectedClient = null;
 	
-	public void setCatServer(CatServer catServer) {
-		this.catServer =catServer;
+	public void setCatServer(ConnectedClient connectedClient) {
+		this.connectedClient = connectedClient;
 	}
 
 	public ServerView() {	
@@ -146,8 +139,8 @@ public class ServerView extends JFrame{
 			return;
 		}
 		
-		Collection<CatClientBean> clients = catServer.onlines.values();
-		Iterator<CatClientBean> it = clients.iterator();
+		Collection<Clientserverinfo> clients = connectedClient.onlines.values();
+		Iterator<Clientserverinfo> it = clients.iterator();
 		ObjectOutputStream oos;
 		while (it.hasNext()) {
 			Socket c = it.next().getSocket();

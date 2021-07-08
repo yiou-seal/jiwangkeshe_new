@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.text.SimpleAttributeSet;
 
 public class CatBean implements Serializable {
@@ -36,7 +35,7 @@ public class CatBean implements Serializable {
 
 	private HashSet<String> to;//send
 	
-	public HashMap<String, CatClientBean> onlines;
+	public HashMap<String, Clientserverinfo> onlines;
 
 	private String info;//send
 
@@ -132,11 +131,11 @@ public class CatBean implements Serializable {
 		this.port = port;
 	}
 
-	public HashMap<String, CatClientBean> getOnlines() {
+	public HashMap<String, Clientserverinfo> getOnlines() {
 		return onlines;
 	}
 
-	public void setOnlines(HashMap<String, CatClientBean> onlines) {
+	public void setOnlines(HashMap<String, Clientserverinfo> onlines) {
 		this.onlines = onlines;
 	}
 

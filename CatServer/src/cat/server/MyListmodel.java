@@ -2,15 +2,14 @@ package cat.server;
 
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Vector;
 
 import javax.swing.DefaultListModel;
-import cat.function.CatClientBean;
+import cat.function.Clientserverinfo;
 
 class MyListmodel extends DefaultListModel{
 
-	private Vector<CatClientBean>  clientBeans =null;
+	private Vector<Clientserverinfo>  clientBeans =null;
 	
 	public MyListmodel getModle() {
 		return this;
@@ -22,14 +21,14 @@ class MyListmodel extends DefaultListModel{
 		return super.elements();
 	}
 
-	public MyListmodel(HashMap<String, CatClientBean> onlines) {
+	public MyListmodel(HashMap<String, Clientserverinfo> onlines) {
 		clientBeans =new Vector<>();
-		clientBeans = (Vector<CatClientBean>)onlines.values();
+		clientBeans = (Vector<Clientserverinfo>)onlines.values();
 	}
 
 	@Override
 	public void addElement(Object element) {
-		clientBeans.add((CatClientBean) element);
+		clientBeans.add((Clientserverinfo) element);
 	}
 
 	@Override

@@ -43,9 +43,9 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
-  <component name="RunManager" selected="Application.CatServer">
-    <configuration name="CatServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="cat.server.CatServer" />
+  <component name="RunManager" selected="Application.ConnectedClient">
+    <configuration name="ConnectedClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="cat.server.ConnectedClient" />
       <module name="CatServer" />
       <extension name="coverage">
         <pattern>
@@ -70,13 +70,24 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="Application.CatServer" />
       <item itemvalue="Application.databasesess" />
+      <item itemvalue="Application.ConnectedClient" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.CatServer" />
+        <item itemvalue="Application.ConnectedClient" />
         <item itemvalue="Application.databasesess" />
       </list>
     </recent_temporary>
@@ -110,6 +121,7 @@
       <workItem from="1625714463927" duration="264000" />
       <workItem from="1625714840351" duration="126000" />
       <workItem from="1625714999517" duration="273000" />
+      <workItem from="1625715544937" duration="629000" />
     </task>
     <servers />
   </component>
@@ -127,16 +139,6 @@
           <properties class="java.io.EOFException" package="java.io" />
           <option name="timeStamp" value="4" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/cat/server/CatServer.java</url>
-          <line>309</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/cat/server/CatServer.java</url>
-          <line>337</line>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>

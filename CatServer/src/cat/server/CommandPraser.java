@@ -16,7 +16,7 @@ public class CommandPraser
         this.dbsession = dbsession;
     }
 
-    public void runCommand(CatServer.ClientThread cc, CatBean bean)
+    public void runCommand(ConnectedClient.ClientThread cc, CatBean bean)
     {
         switch (bean.getType())
         {
@@ -135,7 +135,7 @@ public class CommandPraser
 
 
 
-private void addfriend(CatServer.ClientThread cc,CatBean bean)
+private void addfriend(ConnectedClient.ClientThread cc, CatBean bean)
         {
         CatBean serverBean = new CatBean();
         serverBean.setType(12);
@@ -168,7 +168,7 @@ private void addfriend(CatServer.ClientThread cc,CatBean bean)
         cc.sendMessage(serverBean);
         }
 
-private void edituserinfo(CatServer.ClientThread cc,CatBean bean)
+private void edituserinfo(ConnectedClient.ClientThread cc, CatBean bean)
         {
         CatBean serverBean = new CatBean();
         serverBean.setType(11);
@@ -183,7 +183,7 @@ private void edituserinfo(CatServer.ClientThread cc,CatBean bean)
         cc.sendMessage(serverBean);
         }
 
-private void getuserinfo(CatServer.ClientThread cc,CatBean bean)
+private void getuserinfo(ConnectedClient.ClientThread cc, CatBean bean)
         {
         CatBean serverBean = new CatBean();
 
@@ -197,7 +197,7 @@ private void getuserinfo(CatServer.ClientThread cc,CatBean bean)
         cc.sendMessage(serverBean);
         }
 
-private void sendfriendsinfo(CatServer.ClientThread cc,CatBean bean)
+private void sendfriendsinfo(ConnectedClient.ClientThread cc, CatBean bean)
         {
         CatBean serverBean = new CatBean();
         serverBean.setType(13);//包含好友信息的包
@@ -209,7 +209,7 @@ private void sendfriendsinfo(CatServer.ClientThread cc,CatBean bean)
         cc.sendMessage(serverBean);
         }
 
-private void signin(CatServer.ClientThread cc,CatBean bean)
+private void signin(ConnectedClient.ClientThread cc, CatBean bean)
         {
         UsersEntity user= dbsession.getuserinfo(bean.getName());
         boolean result=user.getPassword().equals(bean.getInfo());
@@ -226,7 +226,7 @@ private void signin(CatServer.ClientThread cc,CatBean bean)
         cc.sendMessage(serverBean);
         }
 
-private void signup(CatServer.ClientThread cc,CatBean bean)
+private void signup(ConnectedClient.ClientThread cc, CatBean bean)
         {
         UsersEntity user= dbsession.getuserinfo(bean.getName());
         boolean result=user.getPassword().equals(bean.getInfo());
@@ -245,7 +245,7 @@ private void signup(CatServer.ClientThread cc,CatBean bean)
 
 
 
-private void chat(CatServer.ClientThread cc,CatBean bean)
+private void chat(ConnectedClient.ClientThread cc, CatBean bean)
         {
         //		创建服务器的catbean，并发送给客户端
         CatBean serverBean = new CatBean();
