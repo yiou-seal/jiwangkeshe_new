@@ -70,19 +70,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Application.CatServer" />
       <item itemvalue="Application.databasesess" />
@@ -116,6 +103,13 @@
       <workItem from="1625046681312" duration="23000" />
       <workItem from="1625111966131" duration="3859000" />
       <workItem from="1625146491295" duration="8425000" />
+      <workItem from="1625463163126" duration="2044000" />
+      <workItem from="1625546639660" duration="936000" />
+      <workItem from="1625547626359" duration="1260000" />
+      <workItem from="1625565418897" duration="169000" />
+      <workItem from="1625714463927" duration="264000" />
+      <workItem from="1625714840351" duration="126000" />
+      <workItem from="1625714999517" duration="273000" />
     </task>
     <servers />
   </component>

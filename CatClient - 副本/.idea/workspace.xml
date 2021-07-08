@@ -168,6 +168,8 @@
       <updated>1624868090870</updated>
       <workItem from="1625146511534" duration="7849000" />
       <workItem from="1625156317690" duration="425000" />
+      <workItem from="1625541421512" duration="1654000" />
+      <workItem from="1625547675002" duration="1174000" />
     </task>
     <servers />
   </component>
@@ -209,14 +211,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/cat/client/CatChatroom.java</url>
-          <line>258</line>
-          <properties method="mouseReleased">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/cat/client/CatChatroom.java</url>
           <line>1385</line>
@@ -232,6 +226,14 @@
           <line>209</line>
           <option name="timeStamp" value="30" />
         </line-breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.net.SocketException" package="java.net" />
+          <option name="timeStamp" value="31" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.io.EOFException" package="java.io" />
+          <option name="timeStamp" value="32" />
+        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

@@ -34,15 +34,15 @@ public class CatBean implements Serializable {
 
 	private HashSet<String> clients; // 存放选中的客户
 
-	private HashSet<String> to;
+	private HashSet<String> to;//send
 	
 	public HashMap<String, CatClientBean> onlines;
 
-	private String info;
+	private String info;//send
 
-	private String timer;
+	private String timer;//send
 
-	private String name;
+	private String name;//id
 
 	private String fileName;
 

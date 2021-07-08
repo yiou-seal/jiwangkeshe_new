@@ -149,17 +149,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.CatLogin" />
@@ -178,6 +167,10 @@
       <option name="presentableId" value="Default" />
       <updated>1624868090870</updated>
       <workItem from="1625146511534" duration="8463000" />
+      <workItem from="1625463142636" duration="603000" />
+      <workItem from="1625536091844" duration="1661000" />
+      <workItem from="1625541360393" duration="1376000" />
+      <workItem from="1625547667050" duration="1218000" />
     </task>
     <servers />
   </component>
