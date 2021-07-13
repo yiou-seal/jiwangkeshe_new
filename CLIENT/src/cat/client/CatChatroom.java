@@ -332,7 +332,7 @@ public class CatChatroom extends JFrame implements ActionListener{
 //				toolBar.add(xiuButton);
 
 				//保存按钮
-				JButton saveButton=new JButton(new ImageIcon("images/fa.jpg"));
+				JButton saveButton=new JButton(new ImageIcon("images/send.jpg"));
 				saveButton.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
@@ -352,7 +352,7 @@ public class CatChatroom extends JFrame implements ActionListener{
 				toolBar.add(saveButton);
 
 				//关闭按钮
-				JButton closeButton=new JButton(new ImageIcon("images/zou.jpg"));		//即取消发送
+				JButton closeButton=new JButton(new ImageIcon("images/cancel.jpg"));		//即取消发送
 				closeButton.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
@@ -483,7 +483,7 @@ public class CatChatroom extends JFrame implements ActionListener{
 		setTitle("在线："+name);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		setBounds(200, 100, 688, 543);			//聊天室边界大小
+		setBounds(200, 100, 700, 550);			//聊天室边界大小
 
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -588,7 +588,7 @@ public class CatChatroom extends JFrame implements ActionListener{
 			@Override
 			protected void paintComponent(Graphics g) {
 				super.paintComponent(g);
-				g.drawImage(new ImageIcon("images\\iii.jpg").getImage(), 0, 0, getWidth(), getHeight(), null);		//背景图
+				g.drawImage(new ImageIcon("images\\bk1.jpg").getImage(), 0, 0, getWidth(), getHeight(), null);		//背景图
 			}
 		};
 		setContentPane(contentPane);		//设置整个聊天窗口的面板
@@ -606,7 +606,7 @@ public class CatChatroom extends JFrame implements ActionListener{
 
 		// 打字区域
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(10, 347, 411, 97);
+		scrollPane_1.setBounds(10, 347, 410, 97);
 		getContentPane().add(scrollPane_1);
 
 		textPane1 = new JTextPane();
@@ -614,13 +614,13 @@ public class CatChatroom extends JFrame implements ActionListener{
 
 		// 关闭按钮（此处尚未设置响应）
 		final JButton btnNewButton = new JButton("关闭");
-		btnNewButton.setFont(new Font("宋体", Font.BOLD, 14));
+		btnNewButton.setFont(new Font("宋体", Font.BOLD, 18));
 		btnNewButton.setBounds(141, 448, 71, 30);
 		getContentPane().add(btnNewButton);
 
 		// 发送按钮
 		JButton btnNewButton_1 = new JButton("发送");
-		btnNewButton_1.setFont(new Font("宋体", Font.BOLD, 14));
+		btnNewButton_1.setFont(new Font("宋体", Font.BOLD, 18));
 		btnNewButton_1.setBounds(222, 448, 71, 30);
 		getRootPane().setDefaultButton(btnNewButton_1);
 		getContentPane().add(btnNewButton_1);
@@ -640,19 +640,19 @@ public class CatChatroom extends JFrame implements ActionListener{
 		scrollPane_2.getViewport().setOpaque(false);
 		getContentPane().add(scrollPane_2);
 
+		// 文件传输提示
+		lblNewLabel = new JLabel("文件传输进度：");
+		lblNewLabel.setFont(new Font("宋体", Font.BOLD, 15));
+		lblNewLabel.setForeground(Color.white);
+		lblNewLabel.setBounds(430, 440, 245, 15);
+		getContentPane().add(lblNewLabel);
+
 		// 文件传输栏（进度条设计）
 		progressBar = new JProgressBar();
-		progressBar.setBounds(430, 390, 245, 15);
+		progressBar.setBounds(430, 460, 245, 15);
 		progressBar.setMinimum(1);
 		progressBar.setMaximum(100);
 		getContentPane().add(progressBar);
-
-		// 文件传输提示
-		lblNewLabel = new JLabel("\u6587\u4EF6\u4F20\u9001\u4FE1\u606F\u680F:");
-		lblNewLabel.setFont(new Font("宋体", Font.BOLD, 15));
-		lblNewLabel.setBackground(Color.WHITE);
-		lblNewLabel.setBounds(430, 410, 245, 15);
-		getContentPane().add(lblNewLabel);
 
 		JPanel panel = new JPanel();				//新建一个面板容器用于存放几个按键
 		panel.setBounds(10, 310, 410, 35);
@@ -667,7 +667,7 @@ public class CatChatroom extends JFrame implements ActionListener{
 		btnNewButton_2.setFocusPainted(false);
 		btnNewButton_2.setBorderPainted(false);
 		btnNewButton_2.setBorder(null);
-		btnNewButton_2.setIcon(new ImageIcon(CatChatroom.class.getResource("/cat/anniu/biaoqinganniu.jpg")));
+		btnNewButton_2.setIcon(new ImageIcon(CatChatroom.class.getResource("/cat/anniu/emoji.jpg")));
 		btnNewButton_2.addMouseListener(new MouseAdapter() {		//按键监听响应
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -685,7 +685,7 @@ public class CatChatroom extends JFrame implements ActionListener{
 		button.setFocusPainted(false);
 		button.setBorderPainted(false);
 		button.setBorder(null);
-		button.setIcon(new ImageIcon(CatChatroom.class.getResource("/cat/anniu/zhendonganniu.jpg")));
+		button.setIcon(new ImageIcon(CatChatroom.class.getResource("/cat/anniu/dou.jpg")));
 		button.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -712,7 +712,7 @@ public class CatChatroom extends JFrame implements ActionListener{
 		button_2.setFocusPainted(false);
 		button_2.setBorderPainted(false);
 		button_2.setBorder(null);
-		button_2.setIcon(new ImageIcon(CatChatroom.class.getResource("/cat/anniu/jietuanniu.jpg")));
+		button_2.setIcon(new ImageIcon(CatChatroom.class.getResource("/cat/anniu/cut.jpg")));
 		button_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -993,9 +993,9 @@ public class CatChatroom extends JFrame implements ActionListener{
 							Iterator<String> it = clients.iterator();
 							while (it.hasNext()) {
 								String ele = it.next();
-								if (name.equals(ele)) {					//匹配到自己是在后面备注（我）
-									onlines.add(ele + "(我)");
-								} else {
+								if (name.equals(ele)) {					//匹配到自己是在后面备注
+									onlines.add(ele + "(自己)");
+								} else {	//关键在于此处如何判断并加上好友标签（此部分在服务器端就添加好友字段并且发送过来）
 									onlines.add(ele);					//未匹配到自己时直接将在线用户加入列表即可
 								}
 							}
@@ -1344,7 +1344,7 @@ public class CatChatroom extends JFrame implements ActionListener{
 							info.email = spstr[5];
 							info.accountstate = spstr[6];
 
-							//文本框显示（弄出一个函数？）
+							//文本框显示
 							info.textField1.setText(info.sex);			//每次信息查询前设置
 							info.textField2.setText(info.telenumber);
 							info.textField3.setText(info.email);
@@ -1362,7 +1362,7 @@ public class CatChatroom extends JFrame implements ActionListener{
 							textpane.selectAll();
 						}
 						case 13:{			//好友列表显示
-							
+
 						}
 						default: {
 							break;

@@ -1,8 +1,6 @@
 package cat.login;
 
-import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -57,9 +55,9 @@ public class CatLogin extends JFrame {
 	 * Create the frame.
 	 */
 	public CatLogin() {
-		setTitle("登入程序\n");		//登录界面标题设置
+		setTitle("登录程序\n");		//登录界面标题设置
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(350, 250, 450, 300); 		//移动组件并调整其大小
+		setBounds(350, 250, 600, 400); 		//移动组件并调整其大小
 		contentPane = new JPanel() {
 			private static final long serialVersionUID = 1L;
 
@@ -67,7 +65,7 @@ public class CatLogin extends JFrame {
 			protected void paintComponent(Graphics g) {
 				super.paintComponent(g);
 				g.drawImage(new ImageIcon(
-								"images\\\u767B\u9646\u754C\u9762.jpg").getImage(), 0,
+								"images\\login.jpg").getImage(), 0,
 						0, getWidth(), getHeight(), null);
 			}
 		};		//包含背景图的设置
@@ -75,34 +73,53 @@ public class CatLogin extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);	//取消了默认的border布局方式
 
+		final JLabel lblNewLabel1 = new JLabel();
+		lblNewLabel1.setBounds(160, 95, 151, 21);
+		lblNewLabel1.setForeground(Color.white);
+		lblNewLabel1.setFont(new Font("微软雅黑", Font.BOLD, 20));
+		lblNewLabel1.setText("用户名");
+		getContentPane().add(lblNewLabel1);
+
 		textField = new JTextField();
-		textField.setBounds(128, 153, 104, 21);			//文本框的位置设置
+		textField.setBounds(230, 90, 200, 30);			//文本框的位置设置
 		textField.setOpaque(false);
+		textField.setFont(new Font("微软雅黑", Font.BOLD, 15));
+		textField.setForeground(Color.white);
 		contentPane.add(textField);
 		textField.setColumns(10);
 
+		final JLabel lblNewLabel2 = new JLabel();
+		lblNewLabel2.setBounds(160, 175, 151, 21);
+		lblNewLabel2.setForeground(Color.white);
+		lblNewLabel2.setFont(new Font("微软雅黑", Font.BOLD, 20));
+		lblNewLabel2.setText("密码");
+		getContentPane().add(lblNewLabel2);
+
 		passwordField = new JPasswordField();
-		passwordField.setForeground(Color.BLACK);
+		passwordField.setForeground(Color.white);
+		passwordField.setFont(new Font("微软雅黑", Font.BOLD, 15));
 		passwordField.setEchoChar('*');		//字符回显设置
 		passwordField.setOpaque(false);
-		passwordField.setBounds(128, 189, 104, 21);
+		passwordField.setBounds(230, 170, 200, 30);
 		contentPane.add(passwordField);
 
 		//下面为登录按钮和设置按钮的定义
-		final JButton btnNewButton = new JButton();
-		btnNewButton.setIcon(new ImageIcon("images\\\u767B\u9646.jpg"));
-		btnNewButton.setBounds(246, 227, 50, 25);
+		final JButton btnNewButton = new JButton("登录");
+//		btnNewButton.setIcon(new ImageIcon("images\\\u767B\u9646.jpg"));
+		btnNewButton.setFont(new Font("微软雅黑", Font.BOLD, 20));
+		btnNewButton.setBounds(190, 250, 80, 40);
 		getRootPane().setDefaultButton(btnNewButton);
 		contentPane.add(btnNewButton);
 
-		final JButton btnNewButton_1 = new JButton();
-		btnNewButton_1.setIcon(new ImageIcon("images\\\u6CE8\u518C.jpg"));
-		btnNewButton_1.setBounds(317, 227, 50, 25);
+		final JButton btnNewButton_1 = new JButton("注册");
+//		btnNewButton_1.setIcon(new ImageIcon("images\\\u6CE8\u518C.jpg"));
+		btnNewButton_1.setFont(new Font("微软雅黑", Font.BOLD, 20));
+		btnNewButton_1.setBounds(360, 250, 80, 40);
 		contentPane.add(btnNewButton_1);
 
 		// 登录界面的左下角提示信息  lblNewLabel的内容设置见下面
 		final JLabel lblNewLabel = new JLabel();
-		lblNewLabel.setBounds(60, 220, 151, 21);
+		lblNewLabel.setBounds(60, 250, 151, 21);
 		lblNewLabel.setForeground(Color.red);
 		getContentPane().add(lblNewLabel);
 
