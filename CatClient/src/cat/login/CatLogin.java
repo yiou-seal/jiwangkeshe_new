@@ -31,6 +31,7 @@ import cat.util.CatUtil;
 
 public class CatLogin extends JFrame {
 
+	public static final int PORT = 9999;
 	private JPanel contentPane;
 	private JTextField textField;
 	private JPasswordField passwordField;
@@ -123,7 +124,7 @@ public class CatLogin extends JFrame {
 						if (u_pwd.equals(userPro.getProperty(u_name))) {			//检测用户名对应的密码是否相等，userPro.getProperty获取属性信息
 
 							try {
-								Socket client = new Socket("localhost", 8520);
+								Socket client = new Socket("localhost", PORT);
 
 								btnNewButton.setEnabled(false);
 								CatChatroom frame = new CatChatroom(u_name, client);		//建立聊天室，包含用户名、client客户端信息（目的IP、端口号）

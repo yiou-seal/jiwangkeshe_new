@@ -18,7 +18,7 @@ import database.entity.UsersEntity;
 
 public class ConnectedClient
 {
-	public static int portNumber=8520;
+	public static int portNumber=9999;
 	DefaultListModel myListmodel =new DefaultListModel<>();
 	private static ServerView serverView =null ;
 	private static ServerSocket ss;

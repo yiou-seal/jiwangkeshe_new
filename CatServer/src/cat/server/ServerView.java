@@ -52,7 +52,7 @@ public class ServerView extends JFrame{
 
 	public void  init() {
 		Font font =new Font("宋体",22,16);
-		setTitle("服务器简易管理程序");
+		setTitle("服务器端");
 		setFont(font);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(310, 100, 789, 538);
@@ -61,8 +61,7 @@ public class ServerView extends JFrame{
 			@Override
 			protected void paintComponent(Graphics g) {
 				super.paintComponent(g);
-				g.drawImage(new ImageIcon("images\\fuwu1.jpg").getImage(), 0, 0,
-						getWidth(), getHeight(), null);
+//				g.drawImage(new ImageIcon("images\\fuwu1.jpg").getImage(), 0, 0, getWidth(), getHeight(), null);
 			}
 
 		};
@@ -82,7 +81,7 @@ public class ServerView extends JFrame{
 
 
 		scrollPane = new JScrollPane();
-		scrollPane.setViewportBorder(new TitledBorder(null, "服务器在线用户列表"
+		scrollPane.setViewportBorder(new TitledBorder(null, "当前在线用户"
 				+ "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		online_panel.add(scrollPane, BorderLayout.CENTER);
 
@@ -101,7 +100,7 @@ public class ServerView extends JFrame{
 
 		send_panel = new JPanel();
 		send_panel.setBounds(185, 10, 588, 376);
-		send_panel.setBorder(BorderFactory.createTitledBorder("在线用户信息列表"));
+		send_panel.setBorder(BorderFactory.createTitledBorder("用户信息"));
 		contentPane.add(send_panel);
 		send_panel.setLayout(new BorderLayout(0, 0));
 		
