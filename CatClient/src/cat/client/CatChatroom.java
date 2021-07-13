@@ -827,10 +827,10 @@ public class CatChatroom extends JFrame implements ActionListener{
 					JOptionPane.showMessageDialog(getContentPane(), "请选择聊天对象");
 					return;
 				}
-				if (to.toString().contains(name+"(我)")) {
-					JOptionPane.showMessageDialog(getContentPane(), "不能向自己发送信息");
-					return;
-				}
+//				if (to.toString().contains(name+"(我)")) {
+//					JOptionPane.showMessageDialog(getContentPane(), "不能向自己发送信息");
+//					return;
+//				}
 				if (info.equals("")) {
 					JOptionPane.showMessageDialog(getContentPane(), "不能发送空信息");
 					return;
